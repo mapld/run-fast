@@ -1,0 +1,13 @@
+C:\Users\Alex\Documents\run-fast\Temp\bin\Debug\Assembly-CSharp.dll
+C:\Users\Alex\Documents\run-fast\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\Users\Alex\Documents\run-fast\Temp\bin\Debug\Assembly-CSharp.dll.CodeAnalysisLog.xml
+C:\Users\Alex\Documents\run-fast\Temp\bin\Debug\Assembly-CSharp.dll.lastcodeanalysissucceeded
+C:\Users\Alex\Documents\run-fast\Temp\bin\Debug\UnityEditor.dll
+C:\Users\Alex\Documents\run-fast\Temp\bin\Debug\UnityEngine.dll
+C:\Users\Alex\Documents\run-fast\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\Alex\Documents\run-fast\Temp\bin\Debug\nunit.framework.dll
+C:\Users\Alex\Documents\run-fast\Temp\bin\Debug\Unity.DataContract.dll
+C:\Users\Alex\Documents\run-fast\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\Alex\Documents\run-fast\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Documents\run-fast\obj\Debug\Assembly-CSharp.dll
+C:\Users\Alex\Documents\run-fast\obj\Debug\Assembly-CSharp.pdb
