@@ -16,12 +16,13 @@ public class GlobalSpeed : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-	}
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		if(globalSpeed < maxGlobalSpeed)
 			globalSpeed += Time.deltaTime * globalAcceleration;
-	    
+        
 	}
 }

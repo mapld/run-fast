@@ -9,13 +9,17 @@ using System.Collections;
 public class PlayerScript : MonoBehaviour {
 
 	// JUMPING SHIT
+    
 	public int jumpheight; 		 // Original upward velocity of the jump
 	public int forceToAdd;		 // The amount of upward force added while the jump button is held down
 	public int forceToAddDown;   // The amount of downward force added after the jump button is let go
     public float crouchFactor = 1.0f;   // Percentage of jump applied when crouching
 
-	bool jumping = false;
-  	bool addMoreForce = false;
+    protected float distanceTraveled = 0;
+    public float distanceToAdd = 100f;
+
+	bool jumping = false;       // True if character is in the air
+  	bool addMoreForce = false;  // Set when
 	bool nextJump = false;
 
 	// CROUCHING SHIT -- TEMPORARY maybe
@@ -23,6 +27,8 @@ public class PlayerScript : MonoBehaviour {
 	bool squishing = false;
 	Vector3 squishScale;
 	Vector3 fullScale;
+
+    protected int coins = 0;
 
 
 	// Animation
@@ -44,8 +50,10 @@ public class PlayerScript : MonoBehaviour {
 		
 	}
 
-	// Starts the player character's jump
-	void Jump(){
+	/// <summary>
+    /// Starts the player's jump
+	/// </summary>
+	public void Jump(){
         float adjustedHeight = jumpheight;
         if(squishing)
             adjustedHeight = adjustedHeight*crouchFactor;
@@ -57,6 +65,8 @@ public class PlayerScript : MonoBehaviour {
 	}
 
     void Update(){
+        distanceTraveled += distanceToAdd * Time.deltaTime;
+
         // Instructions to the animator:
         if (jumping)
             animator.SetBool("jumping", true);
@@ -140,8 +150,16 @@ public class PlayerScript : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col){
 		if(col.gameObject.tag.Contains ("Enemy") || col.gameObject.tag.Contains ("Spikes")){
 			Debug.Log("Game over");
+            GlobalData.Coins = coins;
+            GlobalData.Distance = (int)distanceTraveled;
 			Application.LoadLevel("GameOver");
 		}
+
+        if (col.gameObject.tag.Contains("Coin"))
+        {
+            coins++;
+            Destroy(col.gameObject);
+        }
 
 	}
 

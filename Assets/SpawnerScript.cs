@@ -9,19 +9,25 @@ using System.Collections;
 
 public class SpawnerScript : MonoBehaviour {
 
-	// Prefap folders
+	// Prefab folders
 	public GameObject[] platforms;
 	public GameObject[] enemies;
 
+    public float minCoin;
+    public float maxCoin;
+
 	// Spikes
 	public float chanceToSpawnSpikes = 55;
+    public float chanceToSpawnCoin = 33;
 	protected bool spawnSpikes;
+    protected bool spawnCoins;
 	public GameObject spikes;
 	public float spikeHeight;
 
 	// Temporary objects for spawning
 	public GameObject platform; 
 	public GameObject enemy;
+    public GameObject coin;
 
 	// Time in seconds before any spawned object will be destroyed
 	protected int timeBeforeDestroy; 
@@ -111,6 +117,10 @@ public class SpawnerScript : MonoBehaviour {
 				if(Random.Range (1,maxFrameCounter) == 1 && spawnSpikes){
 					spawnSpike();
 				}
+                if (Random.Range(1, maxFrameCounter-10) == 1 && spawnCoins)
+                {
+                    spawnCoin();
+                }
 				if(Random.Range (1,maxFrameCounter) == 1){
 						makeNextObject();
 				}
@@ -126,6 +136,18 @@ public class SpawnerScript : MonoBehaviour {
 		Spawn (spikes,spikeHeight);
 		spawnSpikes = false;
 	}
+
+    public void spawnCoin()
+    {
+        float tempHeight;
+        if (lastObject.tag.Contains("Platform"))
+        {
+            tempHeight = Random.Range(minCoin, maxCoin);
+            Spawn(coin, tempHeight);
+        }
+           
+        spawnCoins = false;
+    }
 
 	public void makeNextObject(){
 
@@ -157,6 +179,7 @@ public class SpawnerScript : MonoBehaviour {
 		Spawn (nextObject, transform.position.y + additionalPlatformHeight);
 		determineNextObject();
 		determineSpikes();
+        determineCoin();
 		
 		if(nextObject.tag.Contains("Platform")){
 			if(lastObject.tag.Contains("Platform")){
@@ -209,6 +232,12 @@ public class SpawnerScript : MonoBehaviour {
 		if(Random.Range(0,100) < chanceToSpawnSpikes)
 			spawnSpikes = true;
 	}
+
+    public void determineCoin()
+    {
+        if (Random.Range(0, 100) < chanceToSpawnCoin)
+            spawnCoins = true;
+    }
 
 	public void Spawn(GameObject objectToSpawn){
 		GameObject tempObject = (GameObject)Instantiate(objectToSpawn, transform.position, transform.rotation);
